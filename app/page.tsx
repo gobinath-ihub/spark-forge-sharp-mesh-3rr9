@@ -529,7 +529,8 @@ function AppContent() {
   const [sampleData, setSampleData] = useState(true)
   const [sampleIds, setSampleIds] = useState<string[]>([])
   const [existingAssetIds, setExistingAssetIds] = useState<string[]>([])
-  const bootedRef = useRef(false)
+  const authFetchRef = useRef(authFetch)
+  authFetchRef.current = authFetch
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem('theme')
@@ -556,29 +557,34 @@ function AppContent() {
   }, [authFetch])
 
   useEffect(() => {
-    if (bootedRef.current) return
-    bootedRef.current = true
-    let mounted = true
+    if (!user?.id) return
+    let cancelled = false
     const boot = async () => {
       setLoading(true)
       try {
-        const seedResponse = await authFetch('/api/seed', { method: 'POST' })
+        const authenticatedFetch = authFetchRef.current
+        const seedResponse = await authenticatedFetch('/api/seed', { method: 'POST' })
         const seedBody = await seedResponse.json() as { success?: boolean; seeded?: boolean; sample_analysis_id?: string; error?: string }
-        if (seedBody.success === true && seedBody.seeded === true && typeof seedBody.sample_analysis_id === 'string') setSampleIds([seedBody.sample_analysis_id])
-        await loadAnalyses()
+        if (!seedResponse.ok || seedBody.success !== true) throw new Error(seedBody.error ?? 'Unable to prepare your workspace.')
+        if (!cancelled && seedBody.seeded === true && typeof seedBody.sample_analysis_id === 'string') setSampleIds([seedBody.sample_analysis_id])
+
+        const analysesResponse = await authenticatedFetch('/api/analyses')
+        const analysesBody = await analysesResponse.json() as { success?: boolean; data?: unknown; error?: string }
+        if (!analysesResponse.ok || analysesBody.success !== true || !Array.isArray(analysesBody.data)) throw new Error(analysesBody.error ?? 'Unable to load analyses.')
+        if (!cancelled) setAnalyses(analysesBody.data.filter(isAnalysisRow))
       } catch (caught) {
-        if (mounted) {
+        if (!cancelled) {
           const message = caught instanceof Error ? caught.message : 'Unable to open your workspace.'
           setError(message)
           toast.error(message)
         }
       } finally {
-        if (mounted) setLoading(false)
+        if (!cancelled) setLoading(false)
       }
     }
     void boot()
-    return () => { mounted = false }
-  }, [authFetch, loadAnalyses])
+    return () => { cancelled = true }
+  }, [user?.id])
 
   const openNewAnalysis = useCallback(() => {
     setSelectedAnalysis(null)
