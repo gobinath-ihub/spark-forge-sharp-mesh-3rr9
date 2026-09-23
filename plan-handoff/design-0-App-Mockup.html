@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Requirement Lens — App Mockup</title>
+<style>
+:root{
+  --ink:#15171a;--muted:#687078;--line:#d9dde1;--soft:#f3f4f5;
+  --paper:#fff;--panel:#fafafa;--dark:#24282d;--accent:#353b42;
+  --good:#2e6f55;--warn:#8a5b16;--risk:#8b3b3b;--blue:#315f87;
+}
+*{box-sizing:border-box} body{margin:0;background:#e8eaec;color:var(--ink);font-family:Montserrat,Arial,sans-serif}
+.stack{max-width:1500px;margin:auto;padding:26px;display:grid;gap:32px}
+.frame{background:var(--paper);border:1px solid #c8ccd0;box-shadow:0 18px 42px rgba(24,28,32,.12)}
+.band{padding:13px 18px;background:#d9dcdf;color:#30353a;border-bottom:1px solid #c2c6ca;font:700 13px/1.4 Arial,sans-serif;letter-spacing:.02em}
+.screen{min-height:760px;background:#f6f7f8}.top{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.brand{font-size:18px;font-weight:800;letter-spacing:-.04em}.brand i{display:inline-block;width:13px;height:13px;background:#252a30;margin-right:9px;transform:rotate(45deg)}
+.actions,.row{display:flex;align-items:center;gap:10px}.button{border:1px solid #c8cdd2;background:#fff;padding:11px 15px;border-radius:6px;font-size:12px;font-weight:700}.button.primary{background:var(--dark);color:white;border-color:var(--dark)}.button.ghost{border-color:transparent;background:transparent}
+.icon{width:34px;height:34px;border:1px solid var(--line);border-radius:6px;display:grid;place-items:center;font-size:14px}
+.auth{display:grid;grid-template-columns:1.05fr .95fr;min-height:760px}
+.pitch{background:#25292e;color:#f9fafb;padding:76px;display:flex;flex-direction:column;justify-content:space-between}
+.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#aeb5bc}
+.pitch h1{font-size:54px;line-height:1.04;letter-spacing:-.055em;max-width:560px;margin:18px 0}.pitch p{font-size:17px;line-height:1.7;color:#c7ccd1;max-width:520px}.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.proof div{border-top:1px solid #51575d;padding-top:14px;font-size:12px;color:#cbd0d5}.proof strong{display:block;color:#fff;font-size:20px;margin-bottom:4px}
+.formside{background:#f8f8f7;display:grid;place-items:center;padding:40px}.form{width:390px;background:white;border:1px solid var(--line);padding:32px;border-radius:8px;box-shadow:0 12px 25px rgba(0,0,0,.06)}h2{margin:0 0 8px;font-size:25px;letter-spacing:-.035em}.sub{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 25px}.field{margin:17px 0}.field label{display:block;font-size:11px;font-weight:800;margin-bottom:8px}.input{height:44px;border:1px solid #cbd0d4;border-radius:5px;background:white;padding:13px;font-size:12px;color:#798087}.wide{width:100%}.fine{font-size:11px;color:var(--muted);text-align:center;margin-top:17px}
+.shell{display:grid;grid-template-columns:225px 1fr;min-height:692px}.sidebar{background:#202429;color:#d7dade;padding:22px 16px}.sidebrand{font-weight:800;color:#fff;padding:6px 10px 24px}.nav{display:grid;gap:5px}.nav div{padding:11px 12px;font-size:12px;border-radius:5px}.nav .active{background:#363b41;color:white}.sidefoot{margin-top:380px;border-top:1px solid #3b4046;padding:18px 8px;font-size:11px;color:#aeb4ba}
+.main{padding:32px;overflow:hidden}.mainhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:25px}.mainhead h1{font-size:30px;letter-spacing:-.045em;margin:0 0 6px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}.stat{background:#fff;border:1px solid var(--line);border-radius:6px;padding:17px}.stat b{font-size:25px}.stat small{display:block;color:var(--muted);margin-top:6px}
+.toolbar{display:flex;gap:10px;margin-bottom:13px}.search{flex:1;border:1px solid var(--line);background:white;padding:12px 14px;border-radius:5px;color:#8a9096;font-size:12px}
+.table{background:white;border:1px solid var(--line);border-radius:6px;overflow:hidden}.tr{display:grid;grid-template-columns:2.5fr .8fr .8fr .8fr 1fr .25fr;align-items:center;min-height:62px;padding:0 17px;border-bottom:1px solid #e6e8ea;font-size:11px}.tr.head{min-height:42px;background:#f5f6f7;color:#70767c;font-weight:800}.title b{display:block;font-size:12px;margin-bottom:5px}.title span{color:var(--muted)}.badge{display:inline-block;border:1px solid #cbd0d4;border-radius:20px;padding:5px 8px;font-size:10px;background:#fff}.badge.good{color:var(--good);border-color:#b9d2c7;background:#f2f8f5}.badge.warn{color:var(--warn);border-color:#decaa7;background:#fbf7ef}
+.intake{display:grid;grid-template-columns:minmax(0,1.5fr) 380px;gap:20px}.card{background:white;border:1px solid var(--line);border-radius:7px;padding:22px}.card h3{font-size:15px;margin:0 0 18px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}.textarea{height:225px;border:1px solid #cbd0d4;border-radius:5px;padding:14px;font-size:12px;line-height:1.65;color:#4d5359}.drop{height:185px;border:1px dashed #9fa6ad;border-radius:6px;background:#f8f9fa;display:grid;place-items:center;text-align:center;padding:25px;color:#626970;font-size:12px}.upload{margin-top:12px;border:1px solid var(--line);padding:12px;border-radius:5px;display:flex;justify-content:space-between;font-size:11px}.ready{background:#25292e;color:white}.ready h3{font-size:17px}.check{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #454a50;font-size:11px}.check b{color:#9ed0b7}.hint{margin-top:18px;font-size:11px;line-height:1.6;color:#c9ced3}
+.report{display:grid;grid-template-columns:215px 1fr}.rail{border-right:1px solid var(--line);background:white;padding:18px 12px}.rail .section{font-size:11px;padding:10px;border-radius:4px;margin:3px 0;color:#5f666d}.rail .section.active{background:#eceeef;color:#1c2024;font-weight:800}.canvas{padding:24px;background:#f5f6f7}.reporthead{background:white;border:1px solid var(--line);padding:20px;display:flex;justify-content:space-between;align-items:center;border-radius:6px;margin-bottom:14px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.kpi{background:white;border:1px solid var(--line);border-radius:6px;padding:14px}.kpi span{font-size:10px;color:var(--muted);display:block;margin-bottom:6px}.kpi b{font-size:20px}.tabs{display:flex;gap:18px;border-bottom:1px solid var(--line);background:white;padding:0 18px}.tab{padding:14px 0;font-size:11px}.tab.active{font-weight:800;border-bottom:2px solid #252a30}
+.matrix{background:#fff;border:1px solid var(--line);border-top:0;padding:16px}.matrix-tools{display:flex;justify-content:space-between;margin-bottom:13px}.mrow{display:grid;grid-template-columns:.55fr 1.6fr 1fr 1.1fr 1.1fr .7fr;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #e5e7e9;font-size:10px}.mrow.head{background:#f3f4f5;border:0;font-weight:800;color:#666d73}.req{font-weight:800}.chip{display:inline-block;background:#eef0f2;border:1px solid #d5d9dc;border-radius:20px;padding:5px 7px;margin:2px}.orphan{color:var(--risk);font-weight:800}.footnote{font-size:10px;color:var(--muted);margin-top:12px}
+@media(max-width:900px){.auth,.shell,.intake,.report{grid-template-columns:1fr}.sidebar,.rail{display:none}.pitch{padding:40px}.pitch h1{font-size:39px}.stats,.kpis{grid-template-columns:1fr 1fr}.tr{grid-template-columns:2fr 1fr 1fr}.tr>*:nth-child(n+4){display:none}.mrow{grid-template-columns:.6fr 2fr 1fr}.mrow>*:nth-child(n+4){display:none}}
+</style>
+</head>
+<body>
+<div class="stack">
+
+<section class="frame">
+  <div class="band">Screen 1 of 4 · Login &amp; Sign Up · Secure access to private, saved analyses</div>
+  <div class="auth">
+    <div class="pitch">
+      <div>
+        <div class="eyebrow">Requirement Lens</div>
+        <h1>Turn scattered context into requirements people can act on.</h1>
+        <p>Analyze business problems, expose gaps, prioritize product requirements, and preserve traceability from evidence to outcome.</p>
+      </div>
+      <div class="proof">
+        <div><strong>Structured</strong>Consistent analysis sections</div>
+        <div><strong>Traceable</strong>Evidence-linked decisions</div>
+        <div><strong>Reviewable</strong>Human-controlled output</div>
+      </div>
+    </div>
+    <div class="formside">
+      <div class="form">
+        <h2>Welcome back</h2>
+        <p class="sub">Sign in to continue to your analysis workspace.</p>
+        <div class="field"><label>EMAIL ADDRESS</label><div class="input">analyst@company.com</div></div>
+        <div class="field"><label>PASSWORD</label><div class="input">••••••••••••</div></div>
+        <div class="button primary wide" style="text-align:center">Sign in</div>
+        <p class="fine">New to Requirement Lens? <b>Create an account</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="frame">
+  <div class="band">Screen 2 of 4 · Analysis Workspace · Find, manage, and resume saved projects</div>
+  <div class="screen">
+    <div class="top"><div class="brand"><i></i>Requirement Lens</div><div class="actions"><div class="icon">☼</div><div class="icon">AR</div></div></div>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebrand">Workspace</div>
+        <div class="nav"><div class="active">All analyses</div><div>Recent</div><div>Archived</div><div>Templates</div></div>
+        <div class="sidefoot">Alex Rivera<br>Business Analysis</div>
+      </aside>
+      <main class="main">
+        <div class="mainhead"><div><h1>Your analyses</h1><p class="sub">Resume work or start with new source material.</p></div><div class="button primary">＋ New analysis</div></div>
+        <div class="stats">
+          <div class="stat"><b>12</b><small>Total analyses</small></div>
+          <div class="stat"><b>4</b><small>Ready for review</small></div>
+          <div class="stat"><b>86%</b><small>Average traceability</small></div>
+        </div>
+        <div class="toolbar"><div class="search">⌕ Search analyses…</div><div class="button">All statuses ▾</div><div class="button">Last updated ▾</div></div>
+        <div class="table">
+          <div class="tr head"><div>PROJECT</div><div>STATUS</div><div>REQS</div><div>COVERAGE</div><div>UPDATED</div><div></div></div>
+          <div class="tr"><div class="title"><b>Claims Intake Modernization</b><span>Insurance operations</span></div><div><span class="badge good">Ready</span></div><div>38</div><div>92%</div><div>Today, 10:42</div><div>•••</div></div>
+          <div class="tr"><div class="title"><b>Supplier Portal Discovery</b><span>Procurement</span></div><div><span class="badge warn">Draft</span></div><div>24</div><div>71%</div><div>Yesterday</div><div>•••</div></div>
+          <div class="tr"><div class="title"><b>Member Onboarding Redesign</b><span>Digital experience</span></div><div><span class="badge good">Ready</span></div><div>31</div><div>89%</div><div>Sep 18</div><div>•••</div></div>
+          <div class="tr"><div class="title"><b>Field Service Scheduling</b><span>Operations</span></div><div><span class="badge">Analyzing</span></div><div>—</div><div>—</div><div>Sep 16</div><div>•••</div></div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<section class="frame">
+  <div class="band">Screen 3 of 4 · New Analysis · Combine a written problem with supporting documents</div>
+  <div class="screen">
+    <div class="top"><div class="brand"><i></i>Requirement Lens</div><div class="actions"><div class="button ghost">Save draft</div><div class="icon">AR</div></div></div>
+    <main class="main">
+      <div class="mainhead"><div><div class="eyebrow" style="color:#697078">New analysis</div><h1>Describe the business problem</h1><p class="sub">Add the context your stakeholders already have. The analysis will identify what is still missing.</p></div></div>
+      <div class="intake">
+        <div>
+          <div class="card">
+            <h3>Project details</h3>
+            <div class="twocol"><div class="field"><label>PROJECT TITLE</label><div class="input">Claims Intake Modernization</div></div><div class="field"><label>INDUSTRY</label><div class="input">Insurance</div></div></div>
+            <div class="field"><label>BUSINESS PROBLEM</label><div class="textarea">Claims teams rely on email and spreadsheets to receive new submissions. Information is frequently incomplete, triage is inconsistent, and brokers have no visibility into status. The organization wants a guided digital intake experience that improves data quality without slowing down urgent claims.</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3>Supporting documents</h3>
+            <div class="drop"><div><b style="font-size:24px">⇧</b><br><br><b>Drop files here</b><br>or choose PDF, Word, Excel, text, or CSV</div></div>
+            <div class="upload"><span>Discovery-notes.pdf · 2.4 MB</span><b>✓</b></div>
+            <div class="upload"><span>Current-process.xlsx · 640 KB</span><b>✓</b></div>
+          </div>
+          <div class="card ready" style="margin-top:14px">
+            <h3>Ready to analyze</h3>
+            <div class="check"><span>Problem statement</span><b>Included</b></div>
+            <div class="check"><span>Supporting sources</span><b>2 files</b></div>
+            <div class="check"><span>Estimated sections</span><b>13</b></div>
+            <div class="button wide" style="text-align:center;margin-top:18px;background:white;color:#23272c">Analyze requirements →</div>
+            <div class="hint">The analysis will clearly label inferred findings and unresolved questions for human review.</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<section class="frame">
+  <div class="band">Screen 4 of 4 · Analysis &amp; Traceability · Review coverage, priorities, evidence, and unresolved gaps</div>
+  <div class="screen">
+    <div class="top"><div class="brand"><i></i>Requirement Lens</div><div class="actions"><span style="font-size:11px;color:#667078">Saved just now · v3</span><div class="button">Regenerate ▾</div><div class="button primary">Export PDF</div></div></div>
+    <div class="report">
+      <aside class="rail">
+        <div class="section">Executive summary</div><div class="section">Objectives <span style="float:right">4</span></div>
+        <div class="section">Stakeholders <span style="float:right">7</span></div><div class="section">Scope <span style="float:right">12</span></div>
+        <div class="section">User needs <span style="float:right">9</span></div><div class="section">Functional requirements <span style="float:right">38</span></div>
+        <div class="section">Non-functional <span style="float:right">11</span></div><div class="section">Risks &amp; constraints <span style="float:right">15</span></div>
+        <div class="section active">Traceability</div><div class="section">Open questions <span style="float:right;color:#8b3b3b">6</span></div>
+      </aside>
+      <main class="canvas">
+        <div class="reporthead">
+          <div><div class="eyebrow" style="color:#687078">Analysis ready</div><h2 style="margin-top:6px">Claims Intake Modernization</h2><span class="sub">2 sources · analyzed today at 10:42</span></div>
+          <div class="badge good">Ready for review</div>
+        </div>
+        <div class="kpis"><div class="kpi"><span>REQUIREMENTS</span><b>38</b></div><div class="kpi"><span>TRACEABILITY</span><b>92%</b></div><div class="kpi"><span>OPEN QUESTIONS</span><b>6</b></div><div class="kpi"><span>CONFLICTS</span><b>2</b></div></div>
+        <div class="tabs"><div class="tab">Structured requirements</div><div class="tab">Priorities</div><div class="tab active">Traceability matrix</div></div>
+        <div class="matrix">
+          <div class="matrix-tools"><div class="row"><div class="button">All priorities ▾</div><div class="button">All evidence ▾</div><div class="button">Show gaps only</div></div><div class="search" style="max-width:220px">⌕ Find requirement</div></div>
+          <div class="mrow head"><div>ID</div><div>REQUIREMENT</div><div>OBJECTIVE</div><div>USER NEED</div><div>SOURCE</div><div>MEASURE</div></div>
+          <div class="mrow"><div class="req">FR-04</div><div>Validate mandatory claim fields before submission</div><div><span class="chip">OBJ-01</span></div><div><span class="chip">UN-02</span></div><div><span class="chip">Notes p.4</span></div><div><span class="chip">SC-01</span></div></div>
+          <div class="mrow"><div class="req">FR-09</div><div>Show brokers the current triage status</div><div><span class="chip">OBJ-03</span></div><div><span class="chip">UN-05</span></div><div><span class="chip">Problem text</span></div><div><span class="chip">SC-04</span></div></div>
+          <div class="mrow"><div class="req">NFR-03</div><div>Preserve an audit record of status changes</div><div><span class="chip">OBJ-04</span></div><div><span class="chip">UN-07</span></div><div><span class="chip">Process sheet</span></div><div><span class="chip">SC-06</span></div></div>
+          <div class="mrow"><div class="req">FR-17</div><div>Allow urgent claims to bypass standard routing</div><div><span class="chip">OBJ-02</span></div><div><span class="chip">UN-04</span></div><div><span class="chip">Inferred</span></div><div class="orphan">No measure</div></div>
+          <div class="footnote">1 requirement and 2 success criteria currently have incomplete traceability. Inferred links require reviewer confirmation.</div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

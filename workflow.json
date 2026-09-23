@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "input",
+      "type": "Input",
+      "label": "Case Materials",
+      "nodeCategory": "input"
+    },
+    {
+      "id": "requirements_analysis_agent",
+      "type": "Agent",
+      "label": "Requirements Analysis Agent",
+      "nodeCategory": "agent",
+      "agent_id": "6ab3ac842e757a598ee00209"
+    },
+    {
+      "id": "output",
+      "type": "Output",
+      "label": "Structured Requirements Analysis",
+      "nodeCategory": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "input",
+      "target": "requirements_analysis_agent"
+    },
+    {
+      "source": "requirements_analysis_agent",
+      "target": "output"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "6ab3ac842e757a598ee00209",
+      "workflow_node_id": "requirements_analysis_agent",
+      "name": "Requirements Analysis Agent",
+      "type": "hosted_lyzr",
+      "description": "Interprets user-provided case materials, identifies gaps and conflicts, produces normalized requirement records, assigns explainable priorities, and creates traceability links.",
+      "provider_id": "Anthropic",
+      "model": "anthropic/claude-sonnet-4-6",
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "response_schema_path": "response_schemas/requirements_analysis_agent.json"
+    }
+  ]
+}
