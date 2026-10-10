@@ -90,6 +90,13 @@ const nextConfig = {
     'recharts',
     'date-fns',
   ],
+
+  // Disable static generation entirely
+  experimental: {
+    disableOptimizedLoading: true,
+    // Make all pages dynamic by default
+    dynamicIO: true,
+  },
 }
 
 module.exports = nextConfig

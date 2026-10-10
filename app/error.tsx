@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+export const dynamic = 'force-dynamic'
 
 export default function Error({
   error,
@@ -9,52 +9,6 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    console.error('[app/error.tsx] Caught error:', error)
-
-    // Auto-send error to parent iframe for "Fix with AI" support
-    try {
-      if (window.self !== window.top) {
-        const isHallucination =
-          error.message.includes('Element type is invalid') ||
-          error.message.includes('is not a function') ||
-          error.message.includes('is not defined')
-
-        const payload = {
-          type: 'react_error',
-          message: error.message,
-          stack: error.stack,
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent,
-          url: window.location.href,
-        }
-
-        window.parent.postMessage(
-          { type: 'CHILD_APP_ERROR', source: 'architect-child-app', payload },
-          '*'
-        )
-
-        // Auto-request fix for component hallucination errors
-        if (isHallucination) {
-          window.parent.postMessage(
-            {
-              type: 'FIX_ERROR_REQUEST',
-              source: 'architect-child-app',
-              payload: {
-                ...payload,
-                action: 'fix',
-                fixPrompt: `Fix the following runtime error (likely a hallucinated component name):\n\n**Error:** ${error.message}\n\n**Stack:** ${error.stack?.substring(0, 500)}\n\n**Instructions:** Replace any undefined/hallucinated component with a valid shadcn/ui component or define it inline as a function in page.tsx.`,
-              },
-            },
-            '*'
-          )
-        }
-      }
-    } catch {
-      // Cross-origin or postMessage failure — ignore
-    }
-  }, [error])
-
   return (
     <div
       style={{
@@ -77,7 +31,6 @@ export default function Error({
           overflow: 'hidden',
         }}
       >
-        {/* Header */}
         <div
           style={{
             backgroundColor: '#ef4444',
@@ -90,7 +43,6 @@ export default function Error({
           Something went wrong
         </div>
 
-        {/* Body */}
         <div style={{ padding: '24px' }}>
           <p
             style={{

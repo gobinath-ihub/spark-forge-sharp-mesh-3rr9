@@ -1,0 +1,10 @@
+name = "spark-forge-sharp-mesh-3rr9"
+compatibility_date = "2026-10-10"
+main = ".vercel/output/functions/_worker.js"
+assets = { directory = ".vercel/output/static" }
+
+[build]
+command = "npm run build"
+
+[vars]
+NEXT_BUILD_DIST_DIR = ".vercel/output"

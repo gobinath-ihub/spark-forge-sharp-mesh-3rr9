@@ -1,4 +1,5 @@
 'use client'
+export const dynamic = 'force-dynamic'
 
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AuthProvider, ProtectedRoute, UserMenu, useAuth } from 'lyzr-architect-pg/client'
